@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  mysql:
+    image: mysql:8.0
+    container_name: cleanupapp
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: 1234!
+      MYSQL_DATABASE: cleanupapp-db
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: 1234!
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    networks:
+      - app-network
+
+volumes:
+  mysql_data:
+    driver: local
+
+networks:
+  app-network:
+    driver: bridge

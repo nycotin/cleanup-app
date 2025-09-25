@@ -1,0 +1,24 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "$$2a\$10$$ZFrPVYk.y6A8.j.TUGJi0OKJWWzz.JwkXHicWH0xWThK9FaRTVIZW",
+      "email": "admin@example.com",
+      "roles": ["ADMIN", "USER"]
+    },
+    {
+      "id": 2,
+      "username": "john.doe",
+      "password": "$$2a\$10$$wPxBqAz8UH4IyEWOUCR9UOD0DNwBB4.VfZ1hHLO57GNiZ4koFMNl2",
+      "email": "john.doe@example.com",
+      "roles": ["USER"]
+    },
+    {
+      "id": 3,
+      "username": "jane.smith",
+      "password": "$$2a\$10$$6QFN.Zn4Y79yvnmyZJbF9.CYWLiGa2JHPz5FzQl9MZ6MYR7EHdJpO",
+      "roles": ["USER"]
+    }
+  ]
+}

@@ -6,8 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class CleanupApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(CleanupApplication.class, args);
-	}
-
+  public static void main(String[] args) {
+    SpringApplication.run(CleanupApplication.class, args);
+  }
 }

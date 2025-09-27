@@ -3,6 +3,7 @@ package com.app.cleanup.services;
 import com.app.cleanup.entities.Task;
 import com.app.cleanup.repositories.TaskRepository;
 import java.util.List;
+import java.util.Optional;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -20,5 +21,9 @@ public class TaskService {
 
   public List<Task> getAllTasks() {
     return taskRepository.findAll();
+  }
+
+  public Optional<Task> getTaskById(Long taskId) {
+    return taskRepository.findById(taskId);
   }
 }

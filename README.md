@@ -8,3 +8,12 @@
 
 The database will be populated with some users and tasks.
 
+### Running the application
+
+- Open `src.main.java.com.app.cleanup.CleanupApplication`
+- Click the `Play` icon at the top-right side of the IntelliJ
+
+### Running tests
+
+- Open `src.test.java.com.app.cleanup.controller.CleanupApplicationTests`
+- Click the `Play` icon at the top-right side of the IntelliJ

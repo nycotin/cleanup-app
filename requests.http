@@ -1,3 +1,5 @@
 ### GET All Tasks
 GET http://localhost:8080/api/tasks
 
+### GET Task By Id
+GET http://localhost:8080/api/tasks/1

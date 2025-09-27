@@ -29,4 +29,12 @@ public class Task {
     this.name = name;
     this.author_id = author_id;
   }
+
+  public void setAuthorId(Long authorId) {
+    this.author_id = authorId;
+  }
+
+  public void setassigneeId(Long assigneeId) {
+    this.assignee_id = assigneeId;
+  }
 }

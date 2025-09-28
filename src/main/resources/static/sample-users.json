@@ -1,7 +1,7 @@
 [
   {
     "username": "administrator",
-    "password": "$2a$10$rKwE8vN2mZ5qF7xP9jL3DeYHx1oW6sA8tQ4nR7cV2bU9mK5pE3fG6",
+    "password": "Adm1n$ecur3!2025",
     "roles": [
       "ADMIN",
       "USER"
@@ -9,23 +9,17 @@
   },
   {
     "username": "john.doe",
-    "password": "$2a$10$hJ9kL2nM8oP5qR3sT6uV4wX7yZ1aB4cD9eF2gH8iJ5kL6mN9oP2qR",
+    "password": "J0hnD03#Pass2025",
     "roles": [
       "USER"
     ]
   },
   {
     "username": "jane.smith",
-    "password": "$2a$10$vW9xY2zA3bC8dE5fG1hI4jK7lM0nO6pQ9rS2tU8vW3xY6zA9bC2dE",
+    "password": "Jan3Sm1th!Secure7",
     "roles": [
       "MANAGER",
       "USER"
     ]
   }
 ]
-
-
-//PW:
-//"plaintext_password": "Adm1n$ecur3!2025",
-//"plaintext_password": "J0hnD03#Pass2025",
-//"plaintext_password": "Jan3Sm1th!Secure7",

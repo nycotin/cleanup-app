@@ -13,7 +13,7 @@
     <version>0.0.1-SNAPSHOT</version>
     <packaging>war</packaging>
     <name>cleanupapp</name>
-    <description>Test project for clean-up app</description>
+    <description>Test project for cleanup app</description>
     <url/>
     <licenses>
         <license/>
@@ -62,6 +62,11 @@
             <artifactId>lombok</artifactId>
             <groupId>org.projectlombok</groupId>
             <scope>annotationProcessor</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-crypto</artifactId>
         </dependency>
     </dependencies>
 

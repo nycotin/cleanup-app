@@ -1,5 +1,5 @@
-### GET All Tasks
-GET http://localhost:8080/api/tasks
+### GET All Users
+GET http://localhost:8080/api/users
 
 ### GET Task By Id
 GET http://localhost:8080/api/tasks/1
@@ -21,4 +21,22 @@ Content-Type: application/json
   "name": "Coordinate trash collection and sorting stations",
   "authorId": 3,
   "assigneeId": 2
+}
+
+### POST Login User
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "john.doe",
+  "password": "J0hnD03#Pass2025"
+}
+
+### POST Login Wrong User
+POST http://localhost:8080/api/auth/login
+Content-Type: application/json
+
+{
+  "username": "john.doe",
+  "password": "wrongpass"
 }

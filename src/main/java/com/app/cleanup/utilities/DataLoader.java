@@ -2,8 +2,8 @@ package com.app.cleanup.utilities;
 
 import com.app.cleanup.entities.Task;
 import com.app.cleanup.entities.User;
+import com.app.cleanup.services.AuthService;
 import com.app.cleanup.services.TaskService;
-import com.app.cleanup.services.UserService;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -18,15 +18,14 @@ import org.springframework.stereotype.Component;
 @Component
 public class DataLoader {
 
-  private final UserService userService;
+  private final AuthService authService;
   private final TaskService taskService;
 
   @Value("${app.data.initialization.enabled:true}")
   private boolean initializationEnabled;
 
-  // Constructor-based injection (Spring will automatically inject these)
-  public DataLoader(UserService userService, TaskService taskService) {
-    this.userService = userService;
+  public DataLoader(AuthService authService, TaskService taskService) {
+    this.authService = authService;
     this.taskService = taskService;
   }
 
@@ -61,10 +60,10 @@ public class DataLoader {
     }
 
     List<User> userList =
-        objectMapper.readValue(usersResource.getInputStream(), new TypeReference<List<User>>() {});
+        objectMapper.readValue(usersResource.getInputStream(), new TypeReference<>() {});
 
     if (userList != null && !userList.isEmpty()) {
-      userService.addListOfUsers(userList);
+      authService.createListOfUsers(userList);
       System.out.println("Loaded " + userList.size() + " users successfully");
     }
   }
@@ -78,7 +77,7 @@ public class DataLoader {
     }
 
     List<Task> taskList =
-        objectMapper.readValue(tasksResource.getInputStream(), new TypeReference<List<Task>>() {});
+        objectMapper.readValue(tasksResource.getInputStream(), new TypeReference<>() {});
 
     if (taskList != null && !taskList.isEmpty()) {
       taskService.addListOfTasks(taskList);

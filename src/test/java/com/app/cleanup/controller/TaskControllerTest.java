@@ -2,6 +2,7 @@ package com.app.cleanup.controller;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 
 import com.app.cleanup.controllers.TaskController;
@@ -101,7 +102,7 @@ public class TaskControllerTest {
 
   @Test
   @DisplayName("PUT /api/tasks/4 - Should return new task with correct structure and assignee")
-  void shouldAssignTask() throws Exception {
+  void shouldEditTaskByAssigningNewAssignee() throws Exception {
     Task mockTask =
         createMockTask(4L, "Document cleanup progress and take before/after photos", 1L, 2L);
 
@@ -117,6 +118,19 @@ public class TaskControllerTest {
         .andExpect(MockMvcResultMatchers.jsonPath("$.assigneeId", Matchers.is(2)));
 
     verify(taskService).editTask(any(Long.class), any(Task.class));
+  }
+
+  @Test
+  @DisplayName("DELETE /api/tasks/4 - Should delete task")
+  void shouldDeleteTask() throws Exception {
+
+    doNothing().when(taskService).deleteTask(1L);
+
+    mockMvc
+        .perform(MockMvcRequestBuilders.delete("/api/tasks/1"))
+        .andExpect(MockMvcResultMatchers.status().isNoContent());
+
+    verify(taskService).deleteTask(1L);
   }
 
   private Task createMockTask(Long id, String name, Long authorId, Long assigneeId) {

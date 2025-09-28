@@ -7,34 +7,33 @@ import org.hibernate.annotations.DynamicUpdate;
 
 @Entity
 @DynamicUpdate
-@Setter
-@Getter
 @Table(name = "tasks")
 public class Task {
+  @Getter
+  @Setter
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  @Setter
+  @Getter
+  @Column(nullable = false, length = 100, name = "name")
   private String name;
 
-  @Column(name = "author_id")
-  private Long author_id;
+  @Setter
+  @Getter
+  @Column(nullable = false, name = "author_id")
+  private Long authorId;
 
+  @Setter
+  @Getter
   @Column(name = "assignee_id")
-  private Long assignee_id;
+  private Long assigneeId;
 
   public Task() {}
 
-  public Task(String name, Long author_id) {
+  public Task(String name, Long authorId) {
     this.name = name;
-    this.author_id = author_id;
-  }
-
-  public void setAuthorId(Long authorId) {
-    this.author_id = authorId;
-  }
-
-  public void setassigneeId(Long assigneeId) {
-    this.assignee_id = assigneeId;
+    this.authorId = authorId;
   }
 }

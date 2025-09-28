@@ -3,3 +3,22 @@ GET http://localhost:8080/api/tasks
 
 ### GET Task By Id
 GET http://localhost:8080/api/tasks/1
+
+### POST Create New Task Without Assignee
+POST http://localhost:8080/api/tasks
+Content-Type: application/json
+
+{
+  "name": "Coordinate trash collection and sorting stations",
+  "authorId": 3
+}
+
+### PUT Edit Task
+PUT http://localhost:8080/api/tasks/3
+Content-Type: application/json
+
+{
+  "name": "Coordinate trash collection and sorting stations",
+  "authorId": 3,
+  "assigneeId": 2
+}

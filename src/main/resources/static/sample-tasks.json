@@ -1,12 +1,12 @@
 [
   {
     "name": "Setup registration and check-in station",
-    "author_id": 1,
-    "assignee_id": 2
+    "authorId": 1,
+    "assigneeId": 2
   },
   {
     "name": "Distribute cleanup supplies and safety equipment",
-    "author_id": 1,
-    "assignee_id": 3
+    "authorId": 1,
+    "assigneeId": 3
   }
 ]

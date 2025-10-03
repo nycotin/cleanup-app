@@ -1,6 +1,7 @@
 package com.app.cleanup.services;
 
 import com.app.cleanup.entities.Task;
+import com.app.cleanup.exceptions.TaskNotFoundException;
 import com.app.cleanup.repositories.TaskRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -23,9 +24,7 @@ public class TaskService {
   }
 
   public Task getTaskById(Long taskId) {
-    return taskRepository
-        .findById(taskId)
-        .orElseThrow(() -> new RuntimeException("Task with id " + taskId + " not found"));
+    return taskRepository.findById(taskId).orElseThrow(() -> new TaskNotFoundException(taskId));
   }
 
   public Task insertTask(Task task) {
@@ -33,15 +32,12 @@ public class TaskService {
   }
 
   public Task editTask(Long taskId, Task task) {
-    Task currentTask =
-        taskRepository
-            .findById(taskId)
-            .orElseThrow(() -> new RuntimeException("Task with id " + taskId + " not found"));
+    Task currentTask = getTaskById(taskId);
 
     currentTask.setName(task.getName());
     currentTask.setAssigneeId(task.getAssigneeId());
-    taskRepository.save(currentTask);
-    return currentTask;
+
+    return taskRepository.save(currentTask);
   }
 
   public void removeTask(Long taskId) {

@@ -2,7 +2,10 @@ package com.app.cleanup.controllers;
 
 import com.app.cleanup.dto.AuthRequest;
 import com.app.cleanup.dto.AuthResponse;
+import com.app.cleanup.entities.User;
 import com.app.cleanup.services.AuthService;
+import java.util.HashMap;
+import java.util.Map;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,22 +24,29 @@ public class AuthController {
   }
 
   @PostMapping("/login")
-  public ResponseEntity<AuthResponse> authenticateUser(@RequestBody AuthRequest authRequest) {
+  public ResponseEntity<?> authenticateUser(@RequestBody AuthRequest authRequest) {
     try {
-      String apiKey = authService.authenticate(authRequest);
-      return new ResponseEntity<>(new AuthResponse(apiKey), HttpStatus.OK);
+      User user = authService.authenticate(authRequest);
+      return ResponseEntity.ok(
+          new AuthResponse(user.getApiKey(), user.getUsername(), user.getRoles()));
     } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+      Map<String, String> error = new HashMap<>();
+      error.put("error", e.getMessage());
+      return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
   }
 
+  // ! TO BE CHNAGE WITH ACTUAL CREATE USER SERVICE
   @PostMapping("/register")
-  public ResponseEntity<AuthResponse> createUser(@RequestBody AuthRequest authRequest) {
+  public ResponseEntity<?> createUser(@RequestBody AuthRequest authRequest) {
     try {
-      String apiKey = authService.authenticate(authRequest);
-      return new ResponseEntity<>(new AuthResponse(apiKey), HttpStatus.OK);
+      User user = authService.authenticate(authRequest);
+      return ResponseEntity.ok(
+          new AuthResponse(user.getApiKey(), user.getUsername(), user.getRoles()));
     } catch (Exception e) {
-      return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+      Map<String, String> error = new HashMap<>();
+      error.put("error", e.getMessage());
+      return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
     }
   }
 }

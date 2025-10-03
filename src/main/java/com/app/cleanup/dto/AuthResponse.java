@@ -1,14 +1,16 @@
 package com.app.cleanup.dto;
 
-import lombok.Getter;
-import lombok.Setter;
+import com.app.cleanup.enums.Role;
+import java.util.Set;
+import lombok.*;
 
 @Getter
 @Setter
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 public class AuthResponse {
   private String apiKey;
-
-  public AuthResponse(String apiKey) {
-    this.apiKey = apiKey;
-  }
+  private String username;
+  private Set<Role> roles;
 }

@@ -13,7 +13,11 @@ The database will be populated with some users and tasks.
 - Open `src.main.java.com.app.cleanup.CleanupApplication`
 - Click the `Play` icon at the top-right side of the IntelliJ
 
+### Creating a .WAR build
+
+- Run `./mvnw clean package`
+
 ### Running tests
 
-- Open `src.test.java.com.app.cleanup.controller.CleanupApplicationTests`
+- Open `src.test.java.com.app.cleanup.controllers.CleanupApplicationTests`
 - Click the `Play` icon at the top-right side of the IntelliJ

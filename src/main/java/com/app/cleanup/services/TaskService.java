@@ -39,13 +39,12 @@ public class TaskService {
             .orElseThrow(() -> new RuntimeException("Task with id " + taskId + " not found"));
 
     currentTask.setName(task.getName());
-    currentTask.setAuthorId(task.getAuthorId());
     currentTask.setAssigneeId(task.getAssigneeId());
     taskRepository.save(currentTask);
     return currentTask;
   }
 
-  public void deleteTask(Long taskId) {
+  public void removeTask(Long taskId) {
     taskRepository.deleteById(taskId);
   }
 }

@@ -4,10 +4,12 @@ import com.app.cleanup.entities.Task;
 import com.app.cleanup.security.UserContext;
 import com.app.cleanup.services.TaskService;
 import jakarta.servlet.http.HttpServletRequest;
+import java.net.URI;
 import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
 @RequestMapping("/api/tasks")
@@ -47,8 +49,15 @@ public class TaskController {
     task.setAuthorId(currentUserId);
 
     Task newTask = taskService.insertTask(task);
-    System.out.println(newTask);
-    return ResponseEntity.status(HttpStatus.CREATED).body(newTask);
+
+    URI location =
+            ServletUriComponentsBuilder.fromCurrentRequest()
+                    .path("/{id}")
+                    .buildAndExpand(newTask.getId())
+                    .toUri();
+
+    return ResponseEntity.created(location).body(newTask);
+
   }
 
   @PutMapping("/{taskId}")
@@ -58,7 +67,7 @@ public class TaskController {
 
     Task existingTask = taskService.getTaskById(taskId);
     if (!existingTask.getAuthorId().equals(currentUserId)) {
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
     Task updatedTask = taskService.editTask(taskId, task);
@@ -72,10 +81,10 @@ public class TaskController {
 
     Task existingTask = taskService.getTaskById(taskId);
     if (!existingTask.getAuthorId().equals(currentUserId)) {
-      return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+      return ResponseEntity.status(HttpStatus.FORBIDDEN).build();
     }
 
     taskService.removeTask(taskId);
-    return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+    return ResponseEntity.noContent().build();
   }
 }
